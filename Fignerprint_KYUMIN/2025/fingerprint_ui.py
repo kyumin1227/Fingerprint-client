@@ -135,7 +135,7 @@ class FingerprintUI(QMainWindow):
 		# 지문 등록 이벤트 처리
 		if button_status == Status.REGISTER:
 			clear_student_id()
-			QTimer.singleShot(300, lambda: self.updateButtonState(Status.WAITING))
+			QTimer.singleShot(100, lambda: self.updateButtonState(Status.WAITING))
 			return
 
 	def set_message(self, text: str):

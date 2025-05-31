@@ -53,7 +53,6 @@ class FingerprintSensor(QThread):
 		while self.running:
 
 			self.scan_fingerprint()
-			time.sleep(0.1)
 
 	def scan_fingerprint(self):
 		"""지문 스캔 처리"""
