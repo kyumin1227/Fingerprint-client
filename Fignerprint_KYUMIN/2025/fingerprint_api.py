@@ -22,7 +22,7 @@ def init_api():
 		try:
 			SERVER_URL = os.getenv("FP_URL")
 			SERVER_KEY = os.getenv("FP_KEY")
-			
+
 			if SERVER_URL is None:
 				raise ValueError("FP_URL 환경 변수가 설정되지 않았습니다.")
 			if SERVER_KEY is None:
@@ -45,6 +45,7 @@ def get_all_fingerprint_data():
 			return []
 	except requests.exceptions as e:
 		api_message.message.emit(f"요청 과정에서 오류 발생\n{str(e)}")
+		return []
 	except Exception as e:
 		api_message.message.emit(f"지문 정보 조회 중 오류 발생\n{str(e)}")
 		return []
@@ -89,7 +90,7 @@ def close_door(student_id: str):
 				"closingMember": student_id
 			}
 		)
-		handle_api_response(response)
+		return handle_api_response(response)
 	except Exception as e:
 		api_message.message.emit(f"문 닫기 중 오류 발생\n{str(e)}")
 		return False
@@ -105,7 +106,7 @@ def log_status(student_id: str, status: Status):
 				"action": status.value
 			}
 		)
-		handle_api_response(response)
+		return handle_api_response(response)
 	except Exception as e:
 		api_message.message.emit(f"로그 기록 중 오류 발생\n{str(e)}")
 		return False
